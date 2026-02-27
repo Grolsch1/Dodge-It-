@@ -8,6 +8,7 @@ public class playerMovement : MonoBehaviour
 
     private Rigidbody2D playerBody2D;
     [SerializeField] private float speed;
+    [SerializeField] private GameObject clickIndicatorPrefab;
 
     void Start()
     {
@@ -38,6 +39,9 @@ public class playerMovement : MonoBehaviour
         {
             targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             hasTarget = true;
+            Vector2 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            targetPosition = worldPos;
+            Instantiate(clickIndicatorPrefab, worldPos, Quaternion.identity);
         }
     }
 

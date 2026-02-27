@@ -331,6 +331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  clickIndicatorPrefab: {fileID: 334934042127006176, guid: f7281b5b8845e0f40b043437904daf96, type: 3}
 --- !u!58 &1943926522
 CircleCollider2D:
   m_ObjectHideFlags: 0
