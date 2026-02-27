@@ -34,7 +34,7 @@ public class playerMovement : MonoBehaviour
 
     private void GetMouseInput()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
         {
             targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             hasTarget = true;
@@ -43,7 +43,7 @@ public class playerMovement : MonoBehaviour
 
     private void Move()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
         {
             targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             hasTarget = true;
