@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class ClickIndicator : MonoBehaviour
 {
-    public float lifetime = 0.5f;
+    public float lifetime = 0.6f;
     private float timer;
-    private SpriteRenderer sr;
+    private SpriteRenderer clickIndicator;
 
     void Start()
     {
-        sr = GetComponent<SpriteRenderer>();
+        clickIndicator = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -18,9 +18,9 @@ public class ClickIndicator : MonoBehaviour
         float scale = Mathf.Lerp(1f, 0f, timer /  lifetime);
         transform.localScale = Vector3.one * scale;
 
-        Color c = sr.color;
+        Color c = clickIndicator.color;
         c.a = scale;
-        sr.color = c;
+        clickIndicator.color = c;
 
         if (timer >= lifetime) 
             Destroy(gameObject);
