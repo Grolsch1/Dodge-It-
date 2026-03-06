@@ -38,9 +38,9 @@ public class playerMovement : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            hasTarget = true;
             Vector2 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             targetPosition = worldPos;
+            hasTarget = true;
             Instantiate(clickIndicatorPrefab, worldPos, Quaternion.identity);
         }
     }

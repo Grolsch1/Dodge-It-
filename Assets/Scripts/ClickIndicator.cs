@@ -1,30 +1,31 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ClickIndicator : MonoBehaviour
 {
     public float lifetime = 0.6f;
-    private float timer;
+    private float timer = 0f;
     private SpriteRenderer clickIndicator;
 
     void Start()
     {
-        clickIndicator = GetComponent<SpriteRenderer>();
+        //clickIndicator = GetComponent<SpriteRenderer>();
+        Destroy(gameObject, 0.5f);
     }
 
-    void Update()
+    private void Update()
     {
         timer += Time.deltaTime;
 
-        float scale = Mathf.Lerp(1f, 0f, timer /  lifetime);
+        float time = timer / lifetime;
+
+        float scale = Mathf.Lerp(1f, 0f, timer / lifetime);
         transform.localScale = Vector3.one * scale;
 
         Color c = clickIndicator.color;
         c.a = scale;
         clickIndicator.color = c;
-
-        if (timer >= lifetime) 
-            Destroy(gameObject);
-        
     }
+
 }
-//need to fix the code so that the Indicator click disappears
+//Can look to replace update with animations/particle effects for the indicator to make game less reliant on code
