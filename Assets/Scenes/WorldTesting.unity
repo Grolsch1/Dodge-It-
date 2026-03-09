@@ -393,6 +393,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   clickIndicatorPrefab: {fileID: 334934042127006176, guid: f7281b5b8845e0f40b043437904daf96, type: 3}
+  dashSpeed: 20
+  dashDuration: 0.15
+  dashCooldown: 0.75
 --- !u!58 &1943926522
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -500,8 +503,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.122641504, g: 0.118592024, b: 0.118592024, a: 1}
+  m_Sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
+  m_Color: {r: 0.40792987, g: 0.9716981, b: 0.95993173, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

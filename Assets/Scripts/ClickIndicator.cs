@@ -9,7 +9,7 @@ public class ClickIndicator : MonoBehaviour
 
     void Start()
     {
-        //clickIndicator = GetComponent<SpriteRenderer>();
+        clickIndicator = GetComponentInChildren<SpriteRenderer>();
         Destroy(gameObject, 0.5f);
     }
 
@@ -22,7 +22,8 @@ public class ClickIndicator : MonoBehaviour
         float scale = Mathf.Lerp(1f, 0f, timer / lifetime);
         transform.localScale = Vector3.one * scale;
 
-        Color c = clickIndicator.color;
+        Color color = clickIndicator.color;
+        Color c = color;
         c.a = scale;
         clickIndicator.color = c;
     }
