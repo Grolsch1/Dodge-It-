@@ -1,14 +1,23 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Rigidbody))]
+
 public class playerMovement : MonoBehaviour
 {
-    private Vector2 targetPosition;
-    private bool hasTarget = false;
-
     private Rigidbody2D playerBody2D;
-    [SerializeField] private float speed;
+    private Camera mainCamera;
+
+    private Vector2 targetPosition;
+    private bool hasTarget;
+
+
+    [SerializeField] private float speed = 5f;
+
+    [Header("Click Indicator")]
     [SerializeField] private GameObject clickIndicatorPrefab;
+
+    [Header("Dash")]
     [SerializeField] private float dashSpeed = 20f;
     [SerializeField] private float dashDuration = 0.15f;
     [SerializeField] private float dashCooldown = 0.5f;
@@ -18,12 +27,13 @@ public class playerMovement : MonoBehaviour
     private float dashCooldownTimer;
     private Vector2 dashDirection;
 
-    void Start()
+
+    private void Awake()
     {
         playerBody2D = GetComponent<Rigidbody2D>();
+        mainCamera = Camera.main;
     }
 
-  
     void Update()
     {
         GetMouseInput();
@@ -31,43 +41,49 @@ public class playerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        HandleDashCooldown();
         Move();
     }
 
     private void GetMouseInput()
     {
+        Vector2 mouseWorld = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+
+        //Movement
         if (Input.GetMouseButtonDown(1))
         {
-            targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            targetPosition = worldPos;
+            targetPosition = mouseWorld;
             hasTarget = true;
-            Instantiate(clickIndicatorPrefab, worldPos, Quaternion.identity);
+
+            if (clickIndicatorPrefab != null)
+                Instantiate(clickIndicatorPrefab, mouseWorld, Quaternion.identity);
         }
-        if (Input.GetMouseButtonDown(1) && dashCooldownTimer <=0)
-        {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            dashDirection = (mousePos - playerBody2D.position).normalized;
+
+
+        //Dashing
+        if (Input.GetKeyDown(KeyCode.LeftShift) && dashCooldownTimer <=0)
+        { 
+            dashDirection = (mouseWorld - playerBody2D.position).normalized;
 
             isDashing = true;
             dashTimer = dashDuration;
             dashCooldownTimer = dashCooldown;
+
+            targetPosition = mouseWorld;
+            hasTarget = true;
         }
+    }
+
+    private void HandleDashCooldown()
+    {
+        if (dashCooldownTimer > 0) 
+            dashCooldownTimer -= Time.fixedDeltaTime;
+
     }
 
     private void Move()
     {
-        if (!hasTarget)
-            return;
-
-        Vector2 direction = (targetPosition - playerBody2D.position).normalized;
-        playerBody2D.linearVelocity = direction * speed;
-
-        transform.up = direction;
-
-
-        dashCooldownTimer -= Time.fixedDeltaTime;
-
+        //Dash Movement
         if (isDashing)
         {
             playerBody2D.linearVelocity = dashDirection * dashSpeed;
@@ -80,16 +96,22 @@ public class playerMovement : MonoBehaviour
             return;
         }
 
-        if (hasTarget)
+        //Normal Movement
+        if (!hasTarget)
         {
-            Vector2 direction = (targetPosition - playerBody2D.position).normalized;
-            playerBody2D.linearVelocity = direction * speed;
+            playerBody2D.linearVelocity = Vector2.zero;
+            return;
+        }
 
-            if (Vector2.Distance(playerBody2D.position, targetPosition) <0.1f)
-            {
-                playerBody2D.linearVelocity = Vector2.zero;
-                hasTarget = false;
-            }
+        Vector2 direction = (targetPosition - playerBody2D.position).normalized;
+        playerBody2D.linearVelocity = direction * speed;
+
+        float distance = Vector2.Distance(playerBody2D.position, targetPosition);
+
+        if (distance <= speed * Time.fixedDeltaTime)
+        {
+            playerBody2D.position = targetPosition;
+            hasTarget = false;
         }
     }
 }
