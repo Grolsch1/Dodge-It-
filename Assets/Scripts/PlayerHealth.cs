@@ -2,11 +2,14 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 10;
-    [SerializeField] private DamageUI damageUI;
-    private int currentHealth;
+    [Header("Health")]
+    [SerializeField] public int maxHealth = 100;
+    public int currentHealth;
 
-    void Start()
+    [Header("Effects")]
+    [SerializeField] private DamageUI damageUI;
+
+    void Awake()
     {
         currentHealth = maxHealth;
     }
@@ -18,7 +21,7 @@ public class PlayerHealth : MonoBehaviour
         if (damageUI != null)
             damageUI.TriggerFlash();
 
-        Debug.Log("Player Health: " + currentHealth);
+        //Debug.Log("Player Health: " + currentHealth);
 
         if (currentHealth <= 0)
             Die();
@@ -30,4 +33,15 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Player Died");
         Destroy(gameObject);
     }
+
+    public int GetHealth()
+    {
+        return currentHealth;
+    }
+
+    public int GetMaxHealth()
+    {
+        return maxHealth;
+    }
+
 }
