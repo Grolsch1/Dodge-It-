@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -36,6 +37,9 @@ public class playerMovement : MonoBehaviour
 
     void Update()
     {
+        if (!GameManager.instance.isGamePlaying)
+            return;
+
         GetMouseInput();
     }
 
@@ -49,8 +53,8 @@ public class playerMovement : MonoBehaviour
     {
         Vector2 mouseWorld = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
-        //Movement
-        if (Input.GetMouseButtonDown(1))
+        //Movement and Click Indicator
+        if (Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject())
         {
             targetPosition = mouseWorld;
             hasTarget = true;

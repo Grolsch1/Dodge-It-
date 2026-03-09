@@ -11,10 +11,11 @@ public class GameManager : MonoBehaviour
     public GameObject startMenu;
 
     bool isPaused = false;
+    public bool isGamePlaying { get; private set; }
 
     private void Awake()
     {
-        if (instance == null && instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
             return;
@@ -26,8 +27,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        isGamePlaying = false;
         Time.timeScale = 0f;
     }
+
 
     private void Update()
     {
@@ -40,6 +43,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         startMenu.SetActive(false);
+        isGamePlaying = true;
         Time.timeScale = 1f;
     }
 
