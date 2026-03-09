@@ -66,10 +66,10 @@ public class TurretEnemy : MonoBehaviour
 
     void Shoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+        GameObject bullet = BulletPool.Instance.GetBullet();
+        bullet.transform.position = firePoint.position;
 
         Vector2 direction = (player.position - firePoint.position).normalized;
-
         bullet.GetComponent<EnemyBullet>().Initialize(direction);
     }
 }

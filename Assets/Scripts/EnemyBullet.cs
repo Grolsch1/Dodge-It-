@@ -7,7 +7,8 @@ public class EnemyBullet : MonoBehaviour
     [SerializeField] private int damage = 1;
 
     private Rigidbody2D rb;
-    private Vector2 moveDirection;
+    private float timer;
+    private Vector2 direction;
 
     void Awake()
     {
@@ -16,10 +17,17 @@ public class EnemyBullet : MonoBehaviour
 
     public void Initialize(Vector2 direction)
     {
-        moveDirection = direction.normalized;
-        rb.linearVelocity = moveDirection * speed;
+        direction = direction.normalized;
+        rb.linearVelocity = direction * speed;
+        timer = lifetime;
+    }
 
-        Destroy(gameObject, lifetime);
+    void Update ()
+    {
+        timer -= Time.deltaTime;
+
+        if (timer <= 0)
+            BulletPool.Instance.ReturnBullet(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -31,7 +39,7 @@ public class EnemyBullet : MonoBehaviour
             if (player != null)
                 player.TakeDamage(damage);
 
-            Destroy(gameObject);
+            BulletPool.Instance.ReturnBullet(gameObject);
         }
     }
 }
