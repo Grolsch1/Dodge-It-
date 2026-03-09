@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class TurretEnemy : MonoBehaviour
 {
+    [Header("Health")]
+    [SerializeField] private int maxHealth = 50;
+    private int currentHealth;
+
     [Header("References")]
     [SerializeField] private Transform player;
     [SerializeField] private Transform firePoint;
@@ -16,6 +20,10 @@ public class TurretEnemy : MonoBehaviour
     private int shotsFired;
     private bool isBursting;
 
+    private void Awake()
+    {
+        currentHealth = maxHealth;
+    }
     void Update()
     {
         if (player == null) return;
@@ -45,7 +53,7 @@ public class TurretEnemy : MonoBehaviour
                 if (shotsFired >= bulletsPerBurst)
                 {
                     isBursting = false;
-                    timer = Random.Range(burstCooldown * 0.8f, burstCooldown *1.2f);
+                    timer = Random.Range(burstCooldown * 0.8f, burstCooldown * 1.2f);
                     shotsFired = 0;
                 }
                 else
@@ -71,5 +79,20 @@ public class TurretEnemy : MonoBehaviour
 
         Vector2 direction = (player.position - firePoint.position).normalized;
         bullet.GetComponent<EnemyBullet>().Initialize(direction);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die ()
+    {
+        Destroy(gameObject);
     }
 }
