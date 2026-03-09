@@ -1451,8 +1451,8 @@ Transform:
   m_GameObject: {fileID: 841370438}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.865, y: 0.314, z: 0}
-  m_LocalScale: {x: 0.7541, y: 0.2623, z: 1}
+  m_LocalPosition: {x: 0.6615, y: 0.077, z: 0}
+  m_LocalScale: {x: 0.34711224, y: 0.2453292, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1943926525}
@@ -3617,6 +3617,7 @@ GameObject:
   - component: {fileID: 1943926521}
   - component: {fileID: 1943926526}
   - component: {fileID: 1943926527}
+  - component: {fileID: 1943926528}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -3645,6 +3646,7 @@ MonoBehaviour:
   firePoint: {fileID: 841370439}
   projectileSpeed: 10
   damage: 10
+  fireRate: 0.25
 --- !u!58 &1943926522
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3808,6 +3810,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 2980019576013600170, guid: da6dbcc8ea4bb614db40037127ba3e5c, type: 3}
   poolSize: 100
+--- !u!114 &1943926528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943926520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 854e1af80921d9a4cbf862a1833ba290, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 8189243071285305535, guid: a449284b69eb4654fb376af496324ba2, type: 3}
+  poolSize: 50
 --- !u!1001 &5391360869281163816
 PrefabInstance:
   m_ObjectHideFlags: 0
