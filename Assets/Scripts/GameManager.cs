@@ -1,17 +1,26 @@
 using Mono.Cecil.Cil;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [Header("UI")]
     public GameObject pauseMenu;
     public GameObject deathScreen;
     public GameObject startMenu;
 
+    [SerializeField] private GameObject victoryScreen;
+    [SerializeField] private TMPro.TextMeshProUGUI victoryText;
+    [SerializeField] private TextMeshProUGUI killCounterText;
+
     bool isPaused = false;
     public bool isGamePlaying { get; private set; }
+    private int enemiesKilled = 0;
+    private int totalEnemies = 0;
 
     private void Awake()
     {
@@ -29,6 +38,10 @@ public class GameManager : MonoBehaviour
     {
         isGamePlaying = false;
         Time.timeScale = 0f;
+
+        enemiesKilled = 0;
+        totalEnemies = FindObjectsOfType<TurretEnemy>().Length;
+        UpdateKillUI();
     }
 
 
@@ -73,5 +86,33 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void AddKill()
+    {
+        enemiesKilled++;
+        UpdateKillUI();
+
+        if (enemiesKilled >= totalEnemies)
+        {
+            Victory();
+        }
+    }
+
+    void UpdateKillUI()
+    {
+        if (killCounterText != null)
+            killCounterText.text = "Kills: " + enemiesKilled;
+    }
+
+    void Victory()
+    {
+        Time.timeScale = 0f;
+
+        if (victoryScreen != null)
+            victoryScreen.SetActive(true);
+
+        if (victoryScreen != null)
+            victoryText.text = $"Victory! \nEnemies Deafeated: {enemiesKilled}";
     }
 }

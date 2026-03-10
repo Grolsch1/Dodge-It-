@@ -93,6 +93,7 @@ public class TurretEnemy : MonoBehaviour
 
     private void Die ()
     {
+        GameManager.instance.AddKill();
         Destroy(gameObject);
     }
 }
