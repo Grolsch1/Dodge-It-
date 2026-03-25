@@ -1,36 +1,20 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [Header("UI")]
-    public GameObject pauseMenu;
-    public GameObject deathScreen;
-    public GameObject startMenu;
-
-    [SerializeField] private GameObject victoryScreen;
-    [SerializeField] private TMPro.TextMeshProUGUI victoryText;
-    [SerializeField] private TextMeshProUGUI killCounterText;
-
-    bool isPaused = false;
     public bool isGamePlaying { get; private set; }
+    private bool isPaused = false;
+
     private int enemiesKilled = 0;
     private int totalEnemies = 0;
 
     private void Awake()
     {
-        if (instance != null && instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
         instance = this;
-        DontDestroyOnLoad(gameObject);
     }
-
 
     private void Start()
     {
@@ -39,9 +23,10 @@ public class GameManager : MonoBehaviour
 
         enemiesKilled = 0;
         totalEnemies = FindObjectsOfType<TurretEnemy>().Length;
-        UpdateKillUI();
-    }
 
+        GameEvents.OnKillUpdated?.Invoke(enemiesKilled);
+        GameEvents.OnGameReset?.Invoke(); // tells UI to show start menu
+    }
 
     private void Update()
     {
@@ -53,26 +38,27 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        startMenu.SetActive(false);
         isGamePlaying = true;
         Time.timeScale = 1f;
+
+        GameEvents.OnGameStart?.Invoke();
     }
 
     public void TogglePause()
     {
-        if (deathScreen.activeSelf || startMenu.activeSelf)
+        if (GameEvents.CanPauseCheck != null && !GameEvents.CanPauseCheck())
             return;
 
         isPaused = !isPaused;
 
-        pauseMenu.SetActive(isPaused);
         Time.timeScale = isPaused ? 0f : 1f;
+        GameEvents.OnPause?.Invoke(isPaused);
     }
 
     public void PlayerDied()
     {
-        deathScreen.SetActive(true);
         Time.timeScale = 0f;
+        GameEvents.OnPlayerDeath?.Invoke();
     }
 
     public void RestartGame()
@@ -89,7 +75,8 @@ public class GameManager : MonoBehaviour
     public void AddKill()
     {
         enemiesKilled++;
-        UpdateKillUI();
+
+        GameEvents.OnKillUpdated?.Invoke(enemiesKilled);
 
         if (enemiesKilled >= totalEnemies)
         {
@@ -97,20 +84,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void UpdateKillUI()
-    {
-        if (killCounterText != null)
-            killCounterText.text = "Kills: " + enemiesKilled;
-    }
-
-    void Victory()
+    private void Victory()
     {
         Time.timeScale = 0f;
-
-        if (victoryScreen != null)
-            victoryScreen.SetActive(true);
-
-        if (victoryScreen != null)
-            victoryText.text = $"Victory! \nEnemies Deafeated: {enemiesKilled}";
+        GameEvents.OnVictory?.Invoke(enemiesKilled);
     }
 }

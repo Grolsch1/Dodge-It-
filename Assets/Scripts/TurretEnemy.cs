@@ -3,7 +3,7 @@ using UnityEngine;
 public class TurretEnemy : MonoBehaviour
 {
     [Header("Health")]
-    [SerializeField] private int maxHealth = 50;
+    [SerializeField] private int maxHealth = 30;
     private int currentHealth;
 
     [Header("References")]
