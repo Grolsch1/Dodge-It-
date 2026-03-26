@@ -16,6 +16,8 @@ public class TurretEnemy : MonoBehaviour
     [SerializeField] private int bulletsPerBurst = 3;
     [SerializeField] private float burstCooldown = 2f;
 
+    [SerializeField] private int xpReward = 20;
+
     private float timer;
     private int shotsFired;
     private bool isBursting;
@@ -93,6 +95,7 @@ public class TurretEnemy : MonoBehaviour
 
     private void Die ()
     {
+        PlayerXP.instance.AddXP(xpReward);
         GameManager.instance.AddKill();
         Destroy(gameObject);
     }

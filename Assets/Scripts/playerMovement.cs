@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private bool hasTarget;
 
     [Header("Movement")]
-    [SerializeField] private float speed = 5f;
+    [SerializeField] public float speed = 5f;
 
     [Header("Click Indicator")]
     [SerializeField] private GameObject clickIndicatorPrefab;
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private Transform firePoint;
     [SerializeField] private float projectileSpeed = 12f;
-    [SerializeField] private int damage = 10;
+    [SerializeField] public int damage = 10;
     [SerializeField] private float fireRate = 0.25f;
 
     private float shootCooldown;
@@ -102,20 +102,15 @@ public class PlayerController : MonoBehaviour
 
         isShooting = true;
 
-        // Get bullet from pool
         GameObject proj = PlayerBulletPool.Instance.GetBullet();
 
-        // Place it at the fire point
         proj.transform.position = firePoint.position;
 
-        // Calculate direction toward cursor
         Vector2 direction = (target - (Vector2)firePoint.position).normalized;
 
-        // Rotate bullet to face direction
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         proj.transform.rotation = Quaternion.Euler(0, 0, angle);
 
-        // Initialize projectile movement
         PlayerProjectile projectileScript = proj.GetComponent<PlayerProjectile>();
         if (projectileScript != null)
         {
@@ -164,5 +159,15 @@ public class PlayerController : MonoBehaviour
             rb.position = targetPosition;
             hasTarget = false;
         }
+    }
+
+    public void IncreaseSpeed(float amount)
+    {
+        speed += amount;
+    }
+
+    public void IncreaseDamage(int amount)
+    {
+        damage += amount;
     }
 }

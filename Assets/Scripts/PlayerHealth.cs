@@ -43,4 +43,10 @@ public class PlayerHealth : MonoBehaviour
         return maxHealth;
     }
 
+    public void IncreaseMaxHealth(int amount)
+    {
+        maxHealth += amount;
+        currentHealth += amount;
+    }
+
 }
