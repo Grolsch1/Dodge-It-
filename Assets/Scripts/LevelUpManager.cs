@@ -31,27 +31,22 @@ public class LevelUpManager : MonoBehaviour
     }
 
     void ApplyUpgrade(string type)
+{
+    PlayerStats stats = FindObjectOfType<PlayerStats>();
+
+    switch (type)
     {
-        PlayerController player = FindObjectOfType<PlayerController>();
-        PlayerHealth health = FindObjectOfType<PlayerHealth>();
-        
-        switch (type)
-        {
-            case "Health":
-                health.IncreaseMaxHealth(20);
-                break;
+        case "Health":
+            stats.IncreaseHealth(20);
+            break;
 
-            case "Damage":
-                player.IncreaseDamage(5);
-                break;
+        case "Damage":
+            stats.IncreaseDamage(5);
+            break;
 
-            case "Speed":
-                player.IncreaseSpeed(1.5f);
-                break;
-                
-            default:
-                Debug.LogWarning("Unknown upgrade type: " + type);
-                break;
-        }
+        case "Speed":
+            stats.IncreaseSpeed(1.5f);
+            break;
     }
+}
 }
