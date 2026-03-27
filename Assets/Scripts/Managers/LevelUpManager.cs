@@ -86,7 +86,6 @@ public class LevelUpManager : MonoBehaviour
     void ApplyUpgrade(UpgradeOption upgrade)
     {
         PlayerStats stats = FindObjectOfType<PlayerStats>();
-
         switch (upgrade.type)
         {
             case UpgradeType.Health:
