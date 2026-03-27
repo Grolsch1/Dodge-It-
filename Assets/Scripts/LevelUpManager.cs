@@ -21,6 +21,13 @@ public class LevelUpManager : MonoBehaviour
     {
         instance = this;
     }
+    System.Collections.IEnumerator 
+    Start()
+{
+    yield return null; // wait 1 frame
+
+    PlayerXP.instance.onLevelUp += OpenLevelUp;
+}
 
     void OnEnable()
     {
@@ -36,6 +43,8 @@ public class LevelUpManager : MonoBehaviour
 
     void OpenLevelUp()
     {
+        Debug.Log("Opening Level Up Panel");
+
         Time.timeScale = 0f;
         levelUpPanel.SetActive(true);
 

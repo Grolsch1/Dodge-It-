@@ -2190,9 +2190,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelUpManager
   levelUpPanel: {fileID: 364751721}
-  upgradeButtons: []
-  buttonTexts: []
-  allUpgrades: []
+  upgradeButtons:
+  - {fileID: 847936974}
+  - {fileID: 1630178273}
+  - {fileID: 1866604838}
+  buttonTexts:
+  - {fileID: 1279213168}
+  - {fileID: 202731686}
+  - {fileID: 208943495}
+  allUpgrades:
+  - type: 0
+    displayName: Increase Health
+  - type: 1
+    displayName: Increase Damage
+  - type: 2
+    displayName: Increase Speed
 --- !u!114 &364751724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7854,9 +7866,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelUpManager
   levelUpPanel: {fileID: 364751721}
-  upgradeButtons: []
-  buttonTexts: []
-  allUpgrades: []
+  upgradeButtons:
+  - {fileID: 847936974}
+  - {fileID: 1630178273}
+  - {fileID: 1866604838}
+  buttonTexts:
+  - {fileID: 1279213168}
+  - {fileID: 202731686}
+  - {fileID: 208943495}
+  allUpgrades:
+  - type: 0
+    displayName: Increase Health
+  - type: 1
+    displayName: Increase Damage
+  - type: 2
+    displayName: Increase Speed
 --- !u!4 &1550402869
 Transform:
   m_ObjectHideFlags: 0
