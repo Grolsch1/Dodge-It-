@@ -1,4 +1,7 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using System.Collections.Generic;
 
 public class LevelUpManager : MonoBehaviour
 {
@@ -6,47 +9,88 @@ public class LevelUpManager : MonoBehaviour
 
     [Header("UI")]
     public GameObject levelUpPanel;
+    public Button[] upgradeButtons;
+    public TextMeshProUGUI[] buttonTexts;
 
-    private void Awake()
+    [Header("Upgrades")]
+    public List<UpgradeOption> allUpgrades;
+
+    private List<UpgradeOption> currentChoices = new List<UpgradeOption>();
+
+    void Awake()
     {
         instance = this;
     }
 
-    private void Start()
+    void OnEnable()
     {
-        PlayerXP.instance.onLevelUp += OpenLevelUp;
+        if (PlayerXP.instance != null)
+            PlayerXP.instance.onLevelUp += OpenLevelUp;
+    }
+
+    void OnDisable()
+    {
+        if (PlayerXP.instance != null)
+            PlayerXP.instance.onLevelUp -= OpenLevelUp;
     }
 
     void OpenLevelUp()
     {
         Time.timeScale = 0f;
         levelUpPanel.SetActive(true);
+
+        GenerateRandomUpgrades();
     }
 
-    public void ChooseUpgrade(string upgradeType)
+    void GenerateRandomUpgrades()
     {
-        ApplyUpgrade(upgradeType);
+        currentChoices.Clear();
+
+        List<UpgradeOption> tempList = new List<UpgradeOption>(allUpgrades);
+
+        for (int i = 0; i < 3; i++)
+        {
+            int index = Random.Range(0, tempList.Count);
+            currentChoices.Add(tempList[index]);
+            tempList.RemoveAt(index); // prevents duplicates
+        }
+
+        for (int i = 0; i < upgradeButtons.Length; i++)
+        {
+            int choiceIndex = i;
+
+            buttonTexts[i].text = currentChoices[i].displayName;
+
+            upgradeButtons[i].onClick.RemoveAllListeners();
+            upgradeButtons[i].onClick.AddListener(() => ChooseUpgrade(choiceIndex));
+        }
+    }
+
+    void ChooseUpgrade(int index)
+    {
+        ApplyUpgrade(currentChoices[index]);
+
         levelUpPanel.SetActive(false);
         Time.timeScale = 1f;
     }
 
-    void ApplyUpgrade(string type)
-{
-    PlayerStats stats = FindObjectOfType<PlayerStats>();
-
-    switch (type)
+    void ApplyUpgrade(UpgradeOption upgrade)
     {
-        case "Health":
-            stats.IncreaseHealth(20);
-            break;
+        PlayerStats stats = FindObjectOfType<PlayerStats>();
 
-        case "Damage":
-            stats.IncreaseDamage(5);
-            break;
+        switch (upgrade.type)
+        {
+            case UpgradeType.Health:
+                stats.IncreaseHealth(20);
+                break;
 
-        case "Speed":
-            stats.IncreaseSpeed(1.5f);
-            break;
+            case UpgradeType.Damage:
+                stats.IncreaseDamage(5);
+                break;
+
+            case UpgradeType.Speed:
+                stats.IncreaseSpeed(1.5f);
+                break;
+        }
     }
-}
 }
