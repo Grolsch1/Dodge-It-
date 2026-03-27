@@ -6,9 +6,10 @@ public enum UpgradeType
     Damage,
     Speed
 }
+
 [System.Serializable]
 public class UpgradeOption
 {
     public UpgradeType type;
-    public string description;
+    public string displayName;
 }

@@ -2190,6 +2190,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelUpManager
   levelUpPanel: {fileID: 364751721}
+  upgradeButtons: []
+  buttonTexts: []
+  allUpgrades: []
 --- !u!114 &364751724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7851,6 +7854,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelUpManager
   levelUpPanel: {fileID: 364751721}
+  upgradeButtons: []
+  buttonTexts: []
+  allUpgrades: []
 --- !u!4 &1550402869
 Transform:
   m_ObjectHideFlags: 0
