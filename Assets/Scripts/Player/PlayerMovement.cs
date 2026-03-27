@@ -64,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
         {
             dashDirection = (mouseWorld - rb.position).normalized;
 
+            AudioManager.instance.PlaySFX("Dash");
             isDashing = true;
             dashTimer = dashDuration;
             dashCooldownTimer = dashCooldown;

@@ -2868,7 +2868,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74d36de1749da1408023452da3739de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
-  sounds: []
+  sounds:
+  - name: Shoot
+    clip: {fileID: 8300000, guid: 6a1847f1916db8d4e9ec4cd07b561cd7, type: 3}
+    volume: 0.75
+    pitch: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: CatDeath
+    clip: {fileID: 8300000, guid: 42184618c9183cd4ea027f64c3347ccb, type: 3}
+    volume: 0.75
+    pitch: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: Music
+    clip: {fileID: 8300000, guid: 7bac58b0a47d1094fbc7abd85d5ed7fe, type: 3}
+    volume: 0.14
+    pitch: 0.1
+    loop: 1
+    source: {fileID: 0}
+  - name: Dash
+    clip: {fileID: 8300000, guid: 9e65d4550e40e4b499670ceb8d9fe197, type: 3}
+    volume: 0.75
+    pitch: 0.1
+    loop: 0
+    source: {fileID: 0}
   musicSource: {fileID: 976012772}
   sfxSource: {fileID: 1547774343}
 --- !u!4 &543365554
@@ -4744,7 +4768,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -7736,7 +7760,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

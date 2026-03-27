@@ -95,6 +95,7 @@ public class TurretEnemy : MonoBehaviour
 
     private void Die ()
     {
+        AudioManager.instance.PlaySFX("CatDeath");
         PlayerXP.instance.AddXP(xpReward);
         GameManager.instance.AddKill();
         Destroy(gameObject);

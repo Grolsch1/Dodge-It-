@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
 
         GameEvents.OnGameStart?.Invoke();
+        AudioManager.instance.PlayMusic("Music");
     }
 
     public void TogglePause()

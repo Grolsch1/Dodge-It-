@@ -49,6 +49,7 @@ public class PlayerShooting : MonoBehaviour
         {
             projectileScript.Initialize(direction, projectileSpeed, stats.damage);
         }
+        AudioManager.instance.PlaySFX("Shoot");
 
         shootCooldown = fireRate;
     }
