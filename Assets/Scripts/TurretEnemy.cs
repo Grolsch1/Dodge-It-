@@ -87,6 +87,8 @@ public class TurretEnemy : MonoBehaviour
     {
         currentHealth -= damage;
 
+        AudioManager.instance.PlaySFX("EnemyDamage");
+
         if (currentHealth <= 0)
         {
             Die();

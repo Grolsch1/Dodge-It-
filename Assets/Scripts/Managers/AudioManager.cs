@@ -49,7 +49,7 @@ public class AudioManager : MonoBehaviour
     {
         if (soundDictionary.TryGetValue(name, out Sound s))
         {
-            s.source.pitch = Random.Range(0.9f, 1.1f);
+            s.source.pitch = Random.Range(0.6f, 1.1f);
             s.source.PlayOneShot(s.clip);
         }
         else

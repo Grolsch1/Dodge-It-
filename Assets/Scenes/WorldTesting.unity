@@ -2872,7 +2872,7 @@ MonoBehaviour:
   - name: Shoot
     clip: {fileID: 8300000, guid: 6a1847f1916db8d4e9ec4cd07b561cd7, type: 3}
     volume: 0.75
-    pitch: 0.1
+    pitch: 0.5
     loop: 0
     source: {fileID: 0}
   - name: CatDeath
@@ -2889,6 +2889,24 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Dash
     clip: {fileID: 8300000, guid: 9e65d4550e40e4b499670ceb8d9fe197, type: 3}
+    volume: 0.75
+    pitch: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: TakeDamage
+    clip: {fileID: 8300000, guid: dc5cecb9ae70664489126609919d0223, type: 3}
+    volume: 0.75
+    pitch: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: Die
+    clip: {fileID: 8300000, guid: 82d8b88cce875124fa95c46bb52a23d8, type: 3}
+    volume: 0.75
+    pitch: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemyDamage
+    clip: {fileID: 8300000, guid: 13e2af31528bf3a478de26b44e9cf3b3, type: 3}
     volume: 0.75
     pitch: 0.1
     loop: 0

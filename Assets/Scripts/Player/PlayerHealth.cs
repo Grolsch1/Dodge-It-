@@ -16,6 +16,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        AudioManager.instance.PlaySFX("TakeDamage");
         currentHealth -= damage;
 
         if (damageUI != null)
@@ -30,6 +31,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
+        AudioManager.instance.PlaySFX("Die");
         GameManager.instance.PlayerDied();
     }
 
