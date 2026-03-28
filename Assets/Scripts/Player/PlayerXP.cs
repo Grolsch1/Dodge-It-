@@ -7,13 +7,14 @@ public class PlayerXP : MonoBehaviour
 
     [Header("XP")]
     public int currentXP = 0;
-    public int currentLevel = 1;
-    public int xpToNextLevel = 100;
+    public int level = 1;
+    public int requiredXP = 100;
 
     [Header("Scaling")]
     public float xpMultiplier = 1.5f;
 
     public Action onLevelUp;
+    [SerializeField] private PlayerHUD playerHUD;
 
     private void Awake()
     {
@@ -24,20 +25,23 @@ public class PlayerXP : MonoBehaviour
     {
         currentXP += amount;
 
-        if (currentXP >= xpToNextLevel)
+        while (currentXP >= requiredXP)
         {
             LevelUp();
-        }   
+        } 
+        playerHUD.UpdateXP(currentXP, requiredXP, level);
     }
 
     void LevelUp()
     {
-        currentLevel++;
-        currentXP -= xpToNextLevel;
-        xpToNextLevel = Mathf.RoundToInt(xpToNextLevel * xpMultiplier);
+        level++;
+        currentXP -= requiredXP;
+        requiredXP = Mathf.RoundToInt(requiredXP * xpMultiplier);
 
         onLevelUp?.Invoke();
 
-        Debug.Log("Leveled Up! Current Level: " + currentLevel);
+        Debug.Log("Leveled Up! Current Level: " + level);
+
+        playerHUD.UpdateXP(currentXP, requiredXP, level);
     }
 }

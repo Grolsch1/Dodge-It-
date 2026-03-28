@@ -23,11 +23,11 @@ public class LevelUpManager : MonoBehaviour
     }
     System.Collections.IEnumerator 
     Start()
-{
-    yield return null; // wait 1 frame
+    {
+        yield return null; // wait 1 frame
 
-    PlayerXP.instance.onLevelUp += OpenLevelUp;
-}
+        PlayerXP.instance.onLevelUp += OpenLevelUp;
+    }
 
     void OnEnable()
     {
@@ -89,7 +89,7 @@ public class LevelUpManager : MonoBehaviour
         switch (upgrade.type)
         {
             case UpgradeType.Health:
-                stats.IncreaseHealth(20);
+                stats.IncreaseHealth(50);
                 break;
 
             case UpgradeType.Damage:
@@ -97,7 +97,7 @@ public class LevelUpManager : MonoBehaviour
                 break;
 
             case UpgradeType.Speed:
-                stats.IncreaseSpeed(1.5f);
+                stats.IncreaseSpeed(2f);
                 break;
         }
     }

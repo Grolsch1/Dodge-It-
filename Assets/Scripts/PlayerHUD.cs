@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI; 
 using TMPro;
-using Unity.VisualScripting;
 
 public class PlayerHUD : MonoBehaviour
 {
@@ -14,6 +13,16 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] private TextMeshProUGUI damageText;
     [SerializeField] private TextMeshProUGUI speedText;
 
+    [Header("XP")]
+    [SerializeField] private Image xpFill;
+    [SerializeField] private TextMeshProUGUI levelText;
+    private float targetXP;
+
+    void Update()
+    {
+        xpFill.fillAmount = Mathf.Lerp(xpFill.fillAmount, targetXP, Time.deltaTime * 10f);
+    } 
+
     public void UpdateHealth(int current, int max)
     {
         float percent = (float)current / max;
@@ -22,9 +31,14 @@ public class PlayerHUD : MonoBehaviour
         healthText.text = current + " / " + max;
     }
 
-    public void UpdateStats(float damage, float fireRate, float speed)
-{
-    damageText.text = "DMG: " + damage.ToString("F1");
-    speedText.text = "SPD: " + speed.ToString("F1");
-}
+    public void UpdateXP(int currentXP, int requiredXP, int level)
+    {
+        targetXP = (float)currentXP / requiredXP;
+        levelText.text = "LVL " + level;
+    }
+    public void UpdateStats(PlayerStats stats)
+    {
+        damageText.text = "DMG: " + stats.damage;
+        speedText.text = "SPD: " + stats.moveSpeed;
+    }
 }
