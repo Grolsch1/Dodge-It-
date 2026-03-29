@@ -27,7 +27,7 @@ public class EnemyBullet : MonoBehaviour
         timer -= Time.deltaTime;
 
         if (timer <= 0)
-            BulletPool.Instance.ReturnBullet(this);
+            BulletPool.Instance.ReturnBullet(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -39,7 +39,7 @@ public class EnemyBullet : MonoBehaviour
             if (player != null)
                 player.TakeDamage(damage);
 
-            BulletPool.Instance.ReturnBullet(this);
+            BulletPool.Instance.ReturnBullet(gameObject);
         }
     }
 }
