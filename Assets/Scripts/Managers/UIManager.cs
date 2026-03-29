@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     [Header("Text")]
     [SerializeField] private TextMeshProUGUI victoryText;
     [SerializeField] private TextMeshProUGUI killCounterText;
+    [SerializeField] private TextMeshProUGUI waveText;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class UIManager : MonoBehaviour
         GameEvents.OnPlayerDeath += HandleDeath;
         GameEvents.OnKillUpdated += UpdateKillUI;
         GameEvents.OnVictory += HandleVictory;
+        GameEvents.OnWaveUpdated += UpdateWaveUI;
 
         GameEvents.CanPauseCheck += CanPause;
     }
@@ -40,6 +42,7 @@ public class UIManager : MonoBehaviour
         GameEvents.OnPlayerDeath -= HandleDeath;
         GameEvents.OnKillUpdated -= UpdateKillUI;
         GameEvents.OnVictory -= HandleVictory;
+        GameEvents.OnWaveUpdated -= UpdateWaveUI;
 
         GameEvents.CanPauseCheck -= CanPause;
     }
@@ -89,5 +92,10 @@ public class UIManager : MonoBehaviour
     bool CanPause()
     {
         return !deathScreen.activeSelf && !startMenu.activeSelf;
+    }
+
+    void UpdateWaveUI(int wave)
+    {
+        waveText.text = "Wave: " + wave;
     }
 }

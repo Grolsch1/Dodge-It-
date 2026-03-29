@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
     private bool isPaused = false;
 
     private int enemiesKilled = 0;
-    private int totalEnemies = 0;
 
     private void Awake()
     {
@@ -22,7 +21,6 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
 
         enemiesKilled = 0;
-        totalEnemies = FindObjectsOfType<TurretEnemy>().Length;
 
         GameEvents.OnKillUpdated?.Invoke(enemiesKilled);
         GameEvents.OnGameReset?.Invoke(); // tells UI to show start menu
@@ -78,16 +76,21 @@ public class GameManager : MonoBehaviour
         enemiesKilled++;
 
         GameEvents.OnKillUpdated?.Invoke(enemiesKilled);
-
-        if (enemiesKilled >= totalEnemies)
-        {
-            Victory();
-        }
     }
 
     private void Victory()
     {
         Time.timeScale = 0f;
         GameEvents.OnVictory?.Invoke(enemiesKilled);
+    }
+
+    public void TriggerVictory()
+    {
+        Victory();
+    }
+
+    public void OnBossKilled()
+    {
+        Victory();
     }
 }

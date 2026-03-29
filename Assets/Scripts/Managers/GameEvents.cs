@@ -10,4 +10,5 @@ public static class GameEvents
     public static Action<int> OnVictory;
     public static Func<bool> CanPauseCheck;
     public static Action OnGameReset;
+    public static System.Action<int> OnWaveUpdated;
 }

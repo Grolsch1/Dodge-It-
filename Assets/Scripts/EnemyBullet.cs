@@ -15,9 +15,9 @@ public class EnemyBullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public void Initialize(Vector2 direction)
+    public void Initialize(Vector2 dir)
     {
-        direction = direction.normalized;
+        direction = dir.normalized;
         rb.linearVelocity = direction * speed;
         timer = lifetime;
     }
