@@ -8,7 +8,7 @@ public class BulletPool : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private int poolSize = 50;
 
-    private Queue<GameObject> pool = new Queue<GameObject>();
+    private Queue<EnemyBullet> pool = new Queue<EnemyBullet>();
 
     void Awake()
     {
@@ -16,30 +16,31 @@ public class BulletPool : MonoBehaviour
 
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject bullet = Instantiate(bulletPrefab);
-            bullet.SetActive(false);
-            pool.Enqueue(bullet);
+            GameObject obj = Instantiate(bulletPrefab);
+            obj.SetActive(false);
+
+            pool.Enqueue(obj.GetComponent<EnemyBullet>());
         }
     }
 
-    public GameObject GetBullet()
+    public EnemyBullet GetBullet()
     {
         if (pool.Count == 0)
         {
-            GameObject bullet = Instantiate(bulletPrefab);
-            bullet.SetActive(false);
-            pool.Enqueue(bullet);
+            GameObject obj = Instantiate(bulletPrefab);
+            obj.SetActive(false);
+            pool.Enqueue(obj.GetComponent<EnemyBullet>());
         }
 
-        GameObject obj = pool.Dequeue();
-        obj.SetActive(true);
+        EnemyBullet bullet = pool.Dequeue();
+        bullet.gameObject.SetActive(true);
 
-        return obj;
+        return bullet;
     }
 
-    public void ReturnBullet(GameObject bullet)
+    public void ReturnBullet(EnemyBullet bullet)
     {
-        bullet.SetActive(false);
+        bullet.gameObject.SetActive(false);
         pool.Enqueue(bullet);
     }
 }
