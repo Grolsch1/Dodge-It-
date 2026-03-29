@@ -34,12 +34,13 @@ public class PlayerProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        TurretEnemy enemy = collision.GetComponent<TurretEnemy>();
-        if (enemy != null)
+        EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
+
+        if (enemyHealth != null)
         {
-            enemy.TakeDamage(damage);
+            enemyHealth.TakeDamage(damage);
             ReturnToPool();
-        }   
+        }
     }
 
     void ReturnToPool()
