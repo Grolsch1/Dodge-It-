@@ -4,6 +4,13 @@ public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 30;
     [SerializeField] private int xpReward = 20;
+    [SerializeField] private EnemyType enemyType;
+    public enum EnemyType
+    {
+        Normal,
+        MiniBoss,
+        Boss
+    }
 
     private int currentHealth;
 
@@ -31,6 +38,10 @@ public class EnemyHealth : MonoBehaviour
         PlayerXP.instance.AddXP(xpReward);
         GameManager.instance.AddKill();
 
+        if (enemyType == EnemyType.Boss)
+        {
+            GameManager.instance.OnBossKilled();
+        }
         Destroy(gameObject);
     }
 }
