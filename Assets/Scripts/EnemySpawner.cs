@@ -6,7 +6,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject bossPrefab;
 
     public GameObject[] enemyPrefabs;
-    public Transform[] spawnPoints;  // assign objects and place them around the map as spawn points
+    //public Transform[] spawnPoints;
 
     public float timeBetweenWaves = 5f;
     public int enemiesPerWave = 5;
@@ -37,13 +37,16 @@ public class EnemySpawner : MonoBehaviour
 
         Debug.Log("Wave: " + waveNumber);
 
-        if (waveNumber == maxWaves)
+        bool isBossWave = waveNumber == maxWaves;
+
+        WavePopupUI.instance.ShowWave(waveNumber, isBossWave);
+
+        if (isBossWave)
         {
             SpawnBossWave();
-            CancelInvoke(); // stop further waves
+            CancelInvoke();
             return;
         }
-
         for (int i = 0; i < enemiesPerWave; i++)
         {
             SpawnEnemy();
@@ -66,7 +69,7 @@ public class EnemySpawner : MonoBehaviour
     void SpawnEnemy()
     {
         int enemyIndex = Random.Range(0, enemyPrefabs.Length);
-        int spawnIndex = Random.Range(0, spawnPoints.Length);
+        //int spawnIndex = Random.Range(0, spawnPoints.Length);
 
         Instantiate(enemyPrefabs[enemyIndex],
                     GetSpawnPosition(),
