@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
     //public Transform[] spawnPoints;
 
     public float timeBetweenWaves = 5f;
-    public int enemiesPerWave = 5;
+    public int enemiesPerWave = 6;
 
     private int waveNumber = 0;
     public int maxWaves = 5;
@@ -52,7 +52,7 @@ public class EnemySpawner : MonoBehaviour
             SpawnEnemy();
         }
 
-        enemiesPerWave = Mathf.RoundToInt(5 + waveNumber * 1.5f);
+        enemiesPerWave = Mathf.RoundToInt(enemiesPerWave + waveNumber * 1.5f);
         GameEvents.OnWaveUpdated?.Invoke(waveNumber);
     }
 

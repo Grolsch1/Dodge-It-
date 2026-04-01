@@ -38,7 +38,7 @@ public class PlayerHUD : MonoBehaviour
     }
     public void UpdateStats(PlayerStats stats)
     {
-        damageText.text = "DMG: " + stats.damage;
-        speedText.text = "SPD: " + stats.moveSpeed;
+        damageText.text = "DAMAGE: " + stats.damage;
+        speedText.text = "SPEED: " + stats.moveSpeed;
     }
 }
