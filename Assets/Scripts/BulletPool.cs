@@ -6,7 +6,7 @@ public class BulletPool : MonoBehaviour
     public static BulletPool Instance;
 
     [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private int poolSize = 50;
+    [SerializeField] private int poolSize = 40;
 
     private Queue<EnemyBullet> pool = new Queue<EnemyBullet>();
 

@@ -40,7 +40,7 @@ public class PlayerXP : MonoBehaviour
 
         onLevelUp?.Invoke();
 
-        Debug.Log("Leveled Up! Current Level: " + level);
+        //Debug.Log("Leveled Up! Current Level: " + level);
 
         playerHUD.UpdateXP(currentXP, requiredXP, level);
     }

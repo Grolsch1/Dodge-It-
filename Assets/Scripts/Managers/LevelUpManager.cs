@@ -43,7 +43,7 @@ public class LevelUpManager : MonoBehaviour
 
     void OpenLevelUp()
     {
-        Debug.Log("Opening Level Up Panel");
+        //Debug.Log("Opening Level Up Panel");
 
         Time.timeScale = 0f;
         levelUpPanel.SetActive(true);
@@ -69,6 +69,8 @@ public class LevelUpManager : MonoBehaviour
             int choiceIndex = i;
 
             buttonTexts[i].text = currentChoices[i].displayName;
+            buttonTexts[i].fontSize = 40f;
+            buttonTexts[i].fontStyle = FontStyles.Bold;
 
             upgradeButtons[i].onClick.RemoveAllListeners();
             upgradeButtons[i].onClick.AddListener(() => ChooseUpgrade(choiceIndex));
