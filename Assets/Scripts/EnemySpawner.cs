@@ -117,6 +117,6 @@ public class EnemySpawner : MonoBehaviour
 
         GameObject boss = Instantiate(bossPrefab, Vector2.zero, Quaternion.identity);
 
-        aliveEnemies = 1; // boss counts as one enemy
+        aliveEnemies = 1;
     }
 }
