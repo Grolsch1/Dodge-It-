@@ -5,6 +5,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private int maxHealth = 30;
     [SerializeField] private int xpReward = 20;
     [SerializeField] private EnemyType enemyType;
+    private bool isDead = false;
     public enum EnemyType
     {
         Normal,
@@ -21,9 +22,9 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
+        if (isDead) return;
 
-        AudioManager.instance.PlaySFX("EnemyDamage");
+        currentHealth -= damage;
 
         if (currentHealth <= 0)
         {
@@ -33,6 +34,9 @@ public class EnemyHealth : MonoBehaviour
 
     private void Die()
     {
+        if (isDead) return;
+        isDead = true;
+
         AudioManager.instance.PlaySFX("CatDeath");
 
         PlayerXP.instance.AddXP(xpReward);
@@ -42,6 +46,12 @@ public class EnemyHealth : MonoBehaviour
         {
             GameManager.instance.OnBossKilled();
         }
+
+        if (EnemySpawner.instance != null)
+        {
+            EnemySpawner.instance.OnEnemyKilled();
+        }
+
         Destroy(gameObject);
     }
 }

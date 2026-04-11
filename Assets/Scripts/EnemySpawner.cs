@@ -1,5 +1,6 @@
 using System.ComponentModel.Design.Serialization;
 using UnityEngine;
+using System.Collections;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -10,11 +11,17 @@ public class EnemySpawner : MonoBehaviour
 
     public float timeBetweenWaves = 5f;
     public int enemiesPerWave = 6;
-
     private int waveNumber = 0;
     public int maxWaves = 5;
-
+    private int aliveEnemies = 0;
+    private bool isSpawningWave = false;
     private bool bossSpawned = false;
+    public static EnemySpawner instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void OnEnable()
     {
@@ -28,25 +35,31 @@ public class EnemySpawner : MonoBehaviour
 
     void StartSpawning()
     {
-        InvokeRepeating(nameof(SpawnWave), 2f, timeBetweenWaves);
+        StartCoroutine(NextWaveRoutine());
     }
 
-    void SpawnWave()
+    private IEnumerator NextWaveRoutine()
     {
-        waveNumber++;
+        isSpawningWave = true;
 
-        Debug.Log("Wave: " + waveNumber);
+        yield return new WaitForSeconds(1f); // small delay after last enemy dies
+
+        waveNumber++;
 
         bool isBossWave = waveNumber == maxWaves;
 
         WavePopupUI.instance.ShowWave(waveNumber, isBossWave);
 
+        yield return new WaitForSeconds(3f); // wait for popup to finish
+
         if (isBossWave)
         {
             SpawnBossWave();
-            CancelInvoke();
-            return;
+            yield break;
         }
+
+        aliveEnemies = 0;
+
         for (int i = 0; i < enemiesPerWave; i++)
         {
             SpawnEnemy();
@@ -54,6 +67,8 @@ public class EnemySpawner : MonoBehaviour
 
         enemiesPerWave = Mathf.RoundToInt(enemiesPerWave + waveNumber * 1.5f);
         GameEvents.OnWaveUpdated?.Invoke(waveNumber);
+
+        isSpawningWave = false;
     }
 
     Vector2 GetSpawnPosition()
@@ -69,11 +84,22 @@ public class EnemySpawner : MonoBehaviour
     void SpawnEnemy()
     {
         int enemyIndex = Random.Range(0, enemyPrefabs.Length);
-        //int spawnIndex = Random.Range(0, spawnPoints.Length);
 
-        Instantiate(enemyPrefabs[enemyIndex],
-                    GetSpawnPosition(),
-                    Quaternion.identity);
+        GameObject enemy = Instantiate(enemyPrefabs[enemyIndex],
+                        GetSpawnPosition(),
+                        Quaternion.identity);
+
+        aliveEnemies++;
+    }
+
+    public void OnEnemyKilled()
+    {
+        aliveEnemies--;
+
+        if (aliveEnemies <= 0 && !isSpawningWave)
+        {
+            StartCoroutine(NextWaveRoutine());
+        }
     }
 
     void SpawnBossWave()
@@ -89,8 +115,8 @@ public class EnemySpawner : MonoBehaviour
 
         Debug.Log("Boss Wave");
 
-        Vector2 spawnPos = Vector2.zero;
+        GameObject boss = Instantiate(bossPrefab, Vector2.zero, Quaternion.identity);
 
-        Instantiate(bossPrefab, spawnPos, Quaternion.identity);
+        aliveEnemies = 1; // boss counts as one enemy
     }
 }
