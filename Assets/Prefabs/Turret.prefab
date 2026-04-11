@@ -102,11 +102,11 @@ GameObject:
   - component: {fileID: 1670307689597450939}
   - component: {fileID: 904669568506045551}
   - component: {fileID: 8626100745828370857}
-  - component: {fileID: 5643315684778790549}
   - component: {fileID: 7152184209011764579}
   - component: {fileID: 7374094423651766258}
   - component: {fileID: 4012360741907475542}
   - component: {fileID: 985634064682107552}
+  - component: {fileID: -9036117922935462750}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Enemy
@@ -225,19 +225,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &5643315684778790549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7634640268478968425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf91dcda37befe042add337644557d5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyFollow
-  moveSpeed: 3
 --- !u!114 &7152184209011764579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,6 +251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 30
   xpReward: 20
+  enemyType: 0
 --- !u!114 &4012360741907475542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,3 +281,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4016164af77b94f45bcecef1e17ef696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyLookAtPlayer
+--- !u!114 &-9036117922935462750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7634640268478968425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a88fa01352f6cb48988a6f0d08f9c03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
+  moveSpeed: 3
+  stoppingDistance: 2

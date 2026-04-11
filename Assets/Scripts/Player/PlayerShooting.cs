@@ -24,7 +24,7 @@ public class PlayerShooting : MonoBehaviour
 
         shootCooldown -= Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.C) && shootCooldown <= 0)
+        if (Input.GetMouseButtonDown(0) && shootCooldown <= 0)
         {
             Shoot();
         }

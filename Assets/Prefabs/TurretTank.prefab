@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9036117922935462750, guid: 755ca20a62967d84a9266206e68994c6, type: 3}
+      propertyPath: moveSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 747183862119247569, guid: 755ca20a62967d84a9266206e68994c6, type: 3}
       propertyPath: xpReward
       value: 30
@@ -111,6 +115,10 @@ PrefabInstance:
     - target: {fileID: 4012360741907475542, guid: 755ca20a62967d84a9266206e68994c6, type: 3}
       propertyPath: timeBetweenShots
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5643315684778790549, guid: 755ca20a62967d84a9266206e68994c6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5643315684778790549, guid: 755ca20a62967d84a9266206e68994c6, type: 3}
       propertyPath: moveSpeed

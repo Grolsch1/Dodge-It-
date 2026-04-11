@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9036117922935462750, guid: 755ca20a62967d84a9266206e68994c6, type: 3}
+      propertyPath: moveSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 904669568506045551, guid: 755ca20a62967d84a9266206e68994c6, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -77,8 +81,12 @@ PrefabInstance:
       value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5643315684778790549, guid: 755ca20a62967d84a9266206e68994c6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5643315684778790549, guid: 755ca20a62967d84a9266206e68994c6, type: 3}
       propertyPath: moveSpeed
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7374094423651766258, guid: 755ca20a62967d84a9266206e68994c6, type: 3}
       propertyPath: xpReward

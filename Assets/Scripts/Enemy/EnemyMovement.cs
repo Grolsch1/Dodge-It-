@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 3f;
+    [SerializeField] private float stoppingDistance = 10f;
 
     private Enemy enemy;
 
@@ -15,7 +16,12 @@ public class EnemyMovement : MonoBehaviour
     {
         if (enemy.Player == null) return;
 
-        Vector2 dir = (enemy.Player.position - transform.position).normalized;
-        transform.position += (Vector3)(dir * moveSpeed * Time.deltaTime);
+        float distance = Vector2.Distance(transform.position, enemy.Player.position);
+
+        if (distance > stoppingDistance)
+        {
+            Vector2 dir = (enemy.Player.position - transform.position).normalized;
+            transform.position += (Vector3)(dir * moveSpeed * Time.deltaTime);
+        }
     }
 }

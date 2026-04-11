@@ -3579,7 +3579,7 @@ MonoBehaviour:
   - {fileID: 6959949653331418804, guid: 5490cb0accac09948b6d4597166a699f, type: 3}
   - {fileID: 5543595521077809928, guid: d240799bbbcefe44a8721eb28c2a12fb, type: 3}
   timeBetweenWaves: 10
-  enemiesPerWave: 6
+  enemiesPerWave: 1
   maxWaves: 5
 --- !u!4 &635629240
 Transform:
