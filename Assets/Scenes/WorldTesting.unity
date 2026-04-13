@@ -12208,7 +12208,7 @@ MonoBehaviour:
   bulletCount: 5
   spreadAngle: 50
   spreadKey: 113
-  abilityCooldown: 5
+  abilityCooldown: 3
 --- !u!114 &1943926532
 MonoBehaviour:
   m_ObjectHideFlags: 0
