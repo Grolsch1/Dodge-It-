@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: -9036117922935462750, guid: 755ca20a62967d84a9266206e68994c6, type: 3}
+      propertyPath: stoppingDistance
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 747183862119247569, guid: 755ca20a62967d84a9266206e68994c6, type: 3}
       propertyPath: xpReward
       value: 30
@@ -126,7 +130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7374094423651766258, guid: 755ca20a62967d84a9266206e68994c6, type: 3}
       propertyPath: xpReward
-      value: 30
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7374094423651766258, guid: 755ca20a62967d84a9266206e68994c6, type: 3}
       propertyPath: maxHealth

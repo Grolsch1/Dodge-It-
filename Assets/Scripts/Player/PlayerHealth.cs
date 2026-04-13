@@ -25,8 +25,6 @@ public class PlayerHealth : MonoBehaviour
         if (damageUI != null)
             damageUI.TriggerFlash();
 
-        //Debug.Log("Player Health: " + currentHealth);
-
         if (currentHealth <= 0)
             Die();
         
@@ -52,6 +50,14 @@ public class PlayerHealth : MonoBehaviour
     {
         maxHealth += amount;
         currentHealth += amount;
+    }
+
+    public void Heal(int amount)
+    {
+        currentHealth += amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        playerHUD.UpdateHealth(currentHealth, maxHealth);
     }
 
 }
