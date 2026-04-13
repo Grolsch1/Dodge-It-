@@ -3611,7 +3611,7 @@ MonoBehaviour:
   - {fileID: 5543595521077809928, guid: d240799bbbcefe44a8721eb28c2a12fb, type: 3}
   timeBetweenWaves: 10
   enemiesPerWave: 2
-  maxWaves: 5
+  maxWaves: 7
 --- !u!4 &635629240
 Transform:
   m_ObjectHideFlags: 0
@@ -12202,10 +12202,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ac93fe70f12c7140b4182c9c1adc86a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerShooting
-  projectilePrefab: {fileID: 8189243071285305535, guid: a449284b69eb4654fb376af496324ba2, type: 3}
   firePoint: {fileID: 841370439}
   projectileSpeed: 12
-  fireRate: 0.25
+  fireRate: 0.15
+  bulletCount: 5
+  spreadAngle: 50
+  spreadKey: 113
+  abilityCooldown: 5
 --- !u!114 &1943926532
 MonoBehaviour:
   m_ObjectHideFlags: 0

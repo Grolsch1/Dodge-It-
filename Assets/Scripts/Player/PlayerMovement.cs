@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
@@ -16,13 +17,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashSpeed = 20f;
     [SerializeField] private float dashDuration = 0.15f;
     [SerializeField] private float dashCooldown = 0.5f;
-    public bool IsDashing => isDashing;  //other scripts read dash (for camera)
-    public Vector2 DashDirection => dashDirection;
-
     private bool isDashing;
     private float dashTimer;
     private float dashCooldownTimer;
     private Vector2 dashDirection;
+    public bool IsDashing => isDashing;
+    public Vector2 DashDirection => dashDirection;
+
+    [Header("Slowed")]
+    private float speedMultiplier = 1f;
+    private Coroutine slowCoroutine;
+
 
     [Header("Click Indicator")]
     [SerializeField] private GameObject clickIndicatorPrefab;
@@ -101,32 +106,51 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-            // WASD Movement
-            if (movementInput != Vector2.zero)
-            {
-                rb.linearVelocity = movementInput * stats.moveSpeed;
-                return;
-            }
+        float currentSpeed = stats.moveSpeed * speedMultiplier;
 
-            // Click-to-move
-            if (!hasTarget)
-            {
-                rb.linearVelocity = Vector2.zero;
-                return;
-            }
-
-            Vector2 direction = (targetPosition - rb.position).normalized;
-            rb.linearVelocity = direction * stats.moveSpeed;
-
-            float distance = Vector2.Distance(rb.position, targetPosition);
-
-            if (distance <= stats.moveSpeed * Time.fixedDeltaTime)
-            {
-                rb.position = targetPosition;
-                hasTarget = false;
-            }
+        // WASD Movement
+        if (movementInput != Vector2.zero)
+        {
+            rb.linearVelocity = movementInput * currentSpeed;
+            return;
         }
 
+        // Click-to-move
+        if (!hasTarget)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+
+        Vector2 direction = (targetPosition - rb.position).normalized;
+        rb.linearVelocity = direction * currentSpeed;
+
+        float distance = Vector2.Distance(rb.position, targetPosition);
+
+        if (distance <= currentSpeed * Time.fixedDeltaTime)
+        {
+            rb.position = targetPosition;
+            hasTarget = false;
+        }
+    }
+
+
+    public void ApplySlow(float multiplier, float duration)
+    {
+        if (!gameObject.activeInHierarchy) return;
+
+        if (slowCoroutine != null)
+            StopCoroutine(slowCoroutine);
+
+        slowCoroutine = StartCoroutine(SlowCoroutine(multiplier, duration));
+    }
+
+    private System.Collections.IEnumerator SlowCoroutine(float multiplier, float duration)
+    {
+        speedMultiplier = multiplier;
+        yield return new WaitForSeconds(duration);
+        speedMultiplier = 1f;
+    }
     void HandleDashCooldown()
     {
         if (dashCooldownTimer > 0)

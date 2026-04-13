@@ -171,6 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
   moveSpeed: 1
+  stoppingDistance: 10
 --- !u!114 &4006134072715893481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0931c60adb01fd04da5307a2e3faa53a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 300
+  maxHealth: 400
   xpReward: 100
   enemyType: 2
 --- !u!1 &6015857185376614312
