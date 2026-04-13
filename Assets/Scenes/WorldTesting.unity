@@ -9712,9 +9712,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97e95c8f189ce34cb25ca05b8646893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1943926525}
-  smoothSpeed: 5
-  offset: {x: 0, y: 0, z: -10}
+  player: {fileID: 1943926525}
+  followSpeed: 8
+  maxOffsetDistance: 3
+  offsetSmoothing: 6
+  deadZoneRadius: 3
+  dashStretchDistance: 3
+  dashReturnSpeed: 8
 --- !u!114 &1592811138
 MonoBehaviour:
   m_ObjectHideFlags: 0

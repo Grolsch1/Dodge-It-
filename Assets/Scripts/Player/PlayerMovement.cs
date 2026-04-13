@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashSpeed = 20f;
     [SerializeField] private float dashDuration = 0.15f;
     [SerializeField] private float dashCooldown = 0.5f;
+    public bool IsDashing => isDashing;  //other scripts read dash (for camera)
+    public Vector2 DashDirection => dashDirection;
 
     private bool isDashing;
     private float dashTimer;
