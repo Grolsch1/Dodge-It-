@@ -8,28 +8,35 @@ public class BulletPool : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private int poolSize = 40;
 
-    private Queue<EnemyBullet> pool = new Queue<EnemyBullet>();
+    private Dictionary<EnemyBullet, Queue<EnemyBullet>> pools = new Dictionary<EnemyBullet, Queue<EnemyBullet>>();
 
     void Awake()
     {
         Instance = this;
-
-        for (int i = 0; i < poolSize; i++)
-        {
-            GameObject obj = Instantiate(bulletPrefab);
-            obj.SetActive(false);
-
-            pool.Enqueue(obj.GetComponent<EnemyBullet>());
-        }
     }
 
-    public EnemyBullet GetBullet()
+    public EnemyBullet GetBullet(EnemyBullet prefab)
     {
+        if (!pools.ContainsKey(prefab))
+        {
+            pools[prefab] = new Queue<EnemyBullet>();
+
+            for (int i = 0; i < poolSize; i++)
+            {
+                EnemyBullet obj = Instantiate(prefab);
+                obj.PrefabReference = prefab;
+                obj.gameObject.SetActive(false);
+                pools[prefab].Enqueue(obj);
+            }
+        }
+
+        var pool = pools[prefab];
+
         if (pool.Count == 0)
         {
-            GameObject obj = Instantiate(bulletPrefab);
-            obj.SetActive(false);
-            pool.Enqueue(obj.GetComponent<EnemyBullet>());
+            EnemyBullet obj = Instantiate(prefab);
+            obj.gameObject.SetActive(false);
+            pool.Enqueue(obj);
         }
 
         EnemyBullet bullet = pool.Dequeue();
@@ -41,6 +48,14 @@ public class BulletPool : MonoBehaviour
     public void ReturnBullet(EnemyBullet bullet)
     {
         bullet.gameObject.SetActive(false);
-        pool.Enqueue(bullet);
+
+        if (bullet.PrefabReference != null && pools.ContainsKey(bullet.PrefabReference))
+        {
+            pools[bullet.PrefabReference].Enqueue(bullet);
+        }
+        else
+        {
+            Destroy(bullet.gameObject); // fallback safety
+        }
     }
 }

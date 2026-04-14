@@ -185,10 +185,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyShooter
   firePoint: {fileID: 8776420940754644007}
-  timeBetweenShots: 0.1
+  timeBetweenShots: 0.2
   bulletsPerBurst: 16
   burstCooldown: 0.2
-  spreadAngle: 10
+  spreadAngle: 15
+  bulletPrefab: {fileID: 2179495386968333943, guid: 935a1b7a4d6cc0441aeaf2f2e508e1ca, type: 3}
 --- !u!114 &3160881735932602846
 MonoBehaviour:
   m_ObjectHideFlags: 0

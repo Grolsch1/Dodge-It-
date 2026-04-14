@@ -70,8 +70,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4012360741907475542, guid: 755ca20a62967d84a9266206e68994c6, type: 3}
       propertyPath: spreadAngle
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4012360741907475542, guid: 755ca20a62967d84a9266206e68994c6, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 3289645054472415969, guid: dc5d23fe4b9ce7d45a099d964b612488, type: 3}
     - target: {fileID: 4012360741907475542, guid: 755ca20a62967d84a9266206e68994c6, type: 3}
       propertyPath: burstCooldown
       value: 1
@@ -82,7 +86,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4012360741907475542, guid: 755ca20a62967d84a9266206e68994c6, type: 3}
       propertyPath: timeBetweenShots
-      value: 0.1
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 5643315684778790549, guid: 755ca20a62967d84a9266206e68994c6, type: 3}
       propertyPath: m_Enabled

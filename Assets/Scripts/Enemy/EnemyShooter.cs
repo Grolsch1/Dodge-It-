@@ -10,6 +10,7 @@ public class EnemyShooter : MonoBehaviour
     [SerializeField] private int bulletsPerBurst = 3;
     [SerializeField] private float burstCooldown = 2f;
     [SerializeField] private float spreadAngle = 5f;
+    [SerializeField] private EnemyBullet bulletPrefab;
 
     private Enemy enemy;
 
@@ -65,7 +66,7 @@ public class EnemyShooter : MonoBehaviour
 
     void Shoot()
     {
-        EnemyBullet bullet = BulletPool.Instance.GetBullet();
+        EnemyBullet bullet = BulletPool.Instance.GetBullet(bulletPrefab);
         bullet.transform.position = firePoint.position;
 
         Vector2 dir = (enemy.Player.position - firePoint.position).normalized;

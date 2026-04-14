@@ -109,6 +109,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4012360741907475542, guid: 755ca20a62967d84a9266206e68994c6, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 1969503460303854568, guid: 31263ba9a47b4294ea7a4c6ff3e16f80, type: 3}
+    - target: {fileID: 4012360741907475542, guid: 755ca20a62967d84a9266206e68994c6, type: 3}
       propertyPath: burstCooldown
       value: 3
       objectReference: {fileID: 0}

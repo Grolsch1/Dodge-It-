@@ -70,7 +70,7 @@ public class PlayerShooting : MonoBehaviour
 
         if (movement != null)
         {
-            movement.ApplySlow(0.8f, 0.3f);
+            movement.ApplySlow(0.75f, 0.2f);
         }
 
         AudioManager.instance.PlaySFX("Shoot");
@@ -107,7 +107,7 @@ public class PlayerShooting : MonoBehaviour
         }
         if (movement != null)
         {
-            movement.ApplySlow(0.3f, 0.5f);
+            movement.ApplySlow(0.3f, 1f);
         }
         AudioManager.instance.PlaySFX("Shoot");
     }

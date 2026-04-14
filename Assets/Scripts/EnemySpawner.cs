@@ -75,7 +75,7 @@ public class EnemySpawner : MonoBehaviour
     {
         Vector2 playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
 
-        float spawnDistance = 10f;
+        float spawnDistance = 15f;
         Vector2 randomDirection = Random.insideUnitCircle.normalized;
 
         return playerPos + randomDirection * spawnDistance;

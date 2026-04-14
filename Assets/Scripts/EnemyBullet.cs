@@ -5,6 +5,7 @@ public class EnemyBullet : MonoBehaviour
     [SerializeField] private float speed = 10f;
     [SerializeField] private float lifetime = 5f;
     [SerializeField] private int damage = 1;
+    public EnemyBullet PrefabReference { get; set; }
 
     private Rigidbody2D rb;
     private float timer;
