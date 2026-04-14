@@ -36,6 +36,7 @@ public class EnemyBullet : MonoBehaviour
         if (collision.gameObject.CompareTag("Wall"))
         {
             BulletPool.Instance.ReturnBullet(this);
+            return;
         }
         if (collision.CompareTag("Player"))
         {
