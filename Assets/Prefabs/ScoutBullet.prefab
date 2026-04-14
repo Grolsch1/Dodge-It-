@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3289645054472415969}
   - component: {fileID: 870978460604103183}
   - component: {fileID: 267058766391451645}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ScoutBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -33,6 +33,10 @@ public class EnemyBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            BulletPool.Instance.ReturnBullet(this);
+        }
         if (collision.CompareTag("Player"))
         {
             PlayerHealth player = collision.GetComponent<PlayerHealth>();

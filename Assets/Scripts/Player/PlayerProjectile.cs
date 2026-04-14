@@ -34,6 +34,11 @@ public class PlayerProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            ReturnToPool();
+            return;
+        }
         EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();
 
         if (enemyHealth != null)

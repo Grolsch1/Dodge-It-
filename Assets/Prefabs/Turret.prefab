@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4641080013176155211}
   - component: {fileID: 5321719986271836671}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 4012360741907475542}
   - component: {fileID: 985634064682107552}
   - component: {fileID: -9036117922935462750}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Turret
   m_TagString: Enemy
   m_Icon: {fileID: 0}
