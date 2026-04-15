@@ -1,7 +1,9 @@
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class LevelUpManager : MonoBehaviour
 {
@@ -16,6 +18,8 @@ public class LevelUpManager : MonoBehaviour
     public List<UpgradeOption> allUpgrades;
 
     private List<UpgradeOption> currentChoices = new List<UpgradeOption>();
+
+    public CanvasGroup canvasGroup;
 
     void Awake()
     {
@@ -43,12 +47,29 @@ public class LevelUpManager : MonoBehaviour
 
     void OpenLevelUp()
     {
-        //Debug.Log("Opening Level Up Panel");
 
         Time.timeScale = 0f;
+
+        EventSystem.current.SetSelectedGameObject(null);
         levelUpPanel.SetActive(true);
 
         GenerateRandomUpgrades();
+
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+
+        StartCoroutine(EnableUIAfterDelay());
+    }
+
+    IEnumerator EnableUIAfterDelay()
+    {
+        yield return new WaitForSecondsRealtime(0.5f);
+
+        while (Input.GetMouseButton(0))
+            yield return null;
+
+        canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
     }
 
     void GenerateRandomUpgrades()

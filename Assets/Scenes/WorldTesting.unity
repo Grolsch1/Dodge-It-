@@ -2409,6 +2409,7 @@ GameObject:
   - component: {fileID: 364751725}
   - component: {fileID: 364751724}
   - component: {fileID: 364751723}
+  - component: {fileID: 364751726}
   m_Layer: 5
   m_Name: LevelUpPanel
   m_TagString: Untagged
@@ -2466,6 +2467,7 @@ MonoBehaviour:
     displayName: Increase Damage
   - type: 2
     displayName: Increase Speed
+  canvasGroup: {fileID: 364751726}
 --- !u!114 &364751724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2504,6 +2506,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 364751721}
   m_CullTransparentMesh: 1
+--- !u!225 &364751726
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364751721}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &445715103
 GameObject:
   m_ObjectHideFlags: 0
@@ -9530,6 +9544,7 @@ MonoBehaviour:
     displayName: Increase Damage
   - type: 2
     displayName: Increase Speed
+  canvasGroup: {fileID: 0}
 --- !u!4 &1550402869
 Transform:
   m_ObjectHideFlags: 0
