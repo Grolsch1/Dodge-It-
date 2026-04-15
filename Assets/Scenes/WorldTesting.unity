@@ -9544,7 +9544,7 @@ MonoBehaviour:
     displayName: Increase Damage
   - type: 2
     displayName: Increase Speed
-  canvasGroup: {fileID: 0}
+  canvasGroup: {fileID: 364751726}
 --- !u!4 &1550402869
 Transform:
   m_ObjectHideFlags: 0
