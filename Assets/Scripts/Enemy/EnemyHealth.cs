@@ -42,10 +42,16 @@ public class EnemyHealth : MonoBehaviour
         PlayerXP.instance.AddXP(xpReward);
         GameManager.instance.AddKill();
 
+        if (enemyType == EnemyType.MiniBoss)
+        {
+            GameManager.instance.OnMiniBossKilled();
+        }
+
         if (enemyType == EnemyType.Boss)
         {
             GameManager.instance.OnBossKilled();
         }
+
 
         if (EnemySpawner.instance != null)
         {

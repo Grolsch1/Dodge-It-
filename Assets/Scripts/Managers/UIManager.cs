@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 
 public class UIManager : MonoBehaviour
 {
@@ -16,9 +18,22 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI killCounterText;
     [SerializeField] private TextMeshProUGUI waveText;
 
+    [Header("Cutscene")]
+    public GameObject cutscenePanel;
+    public UnityEngine.UI.Image cutsceneImage;
+    private bool canSkipCutscene = false;
+    [SerializeField] private float skipDelay = 0.75f; // tweak this
+
     private void Awake()
     {
         instance = this;
+    }
+    private void Update()
+    {
+        if (cutscenePanel.activeSelf && canSkipCutscene && Input.anyKeyDown)
+        {
+            GameEvents.OnHideCutscene?.Invoke();
+        }
     }
 
     private void OnEnable()
@@ -32,6 +47,8 @@ public class UIManager : MonoBehaviour
         GameEvents.OnWaveUpdated += UpdateWaveUI;
 
         GameEvents.CanPauseCheck += CanPause;
+        GameEvents.OnShowCutscene += ShowCutscene;
+        GameEvents.OnHideCutscene += HideCutscene;
     }
 
     private void OnDisable()
@@ -45,6 +62,8 @@ public class UIManager : MonoBehaviour
         GameEvents.OnWaveUpdated -= UpdateWaveUI;
 
         GameEvents.CanPauseCheck -= CanPause;
+        GameEvents.OnShowCutscene -= ShowCutscene;
+        GameEvents.OnHideCutscene -= HideCutscene;
     }
 
     // ---------- EVENT HANDLERS ----------
@@ -91,11 +110,35 @@ public class UIManager : MonoBehaviour
 
     bool CanPause()
     {
-        return !deathScreen.activeSelf && !startMenu.activeSelf;
+        return !deathScreen.activeSelf
+            && !startMenu.activeSelf
+            && !cutscenePanel.activeSelf;
     }
 
     void UpdateWaveUI(int wave)
     {
         waveText.text = "Wave: " + wave;
+    }
+
+    void ShowCutscene(Sprite image)
+    {
+        cutscenePanel.SetActive(true);
+        cutsceneImage.sprite = image;
+
+        Time.timeScale = 0f;
+
+        canSkipCutscene = false;
+        StartCoroutine(EnableSkipAfterDelay());
+    }
+
+    void HideCutscene()
+    {
+        cutscenePanel.SetActive(false);
+        Time.timeScale = 1f;
+    }
+    System.Collections.IEnumerator EnableSkipAfterDelay()
+    {
+        yield return new WaitForSecondsRealtime(skipDelay);
+        canSkipCutscene = true;
     }
 }

@@ -5,9 +5,9 @@ using System.Collections;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject bossPrefab;
+    [SerializeField] private GameObject miniBossPrefab;
 
     public GameObject[] enemyPrefabs;
-    //public Transform[] spawnPoints;
 
     public float timeBetweenWaves = 5f;
     public int enemiesPerWave = 6;
@@ -16,6 +16,7 @@ public class EnemySpawner : MonoBehaviour
     private int aliveEnemies = 0;
     private bool isSpawningWave = false;
     private bool bossSpawned = false;
+    private bool miniBossSpawned = false;
     public static EnemySpawner instance;
 
     private void Awake()
@@ -45,6 +46,12 @@ public class EnemySpawner : MonoBehaviour
         yield return new WaitForSeconds(1f); // small delay after last enemy dies
 
         waveNumber++;
+
+        bool isMiniBossWave = waveNumber == 5;
+        if (isMiniBossWave)
+        {
+            SpawnMiniBoss();
+        }
 
         bool isBossWave = waveNumber == maxWaves;
 
@@ -104,11 +111,6 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnBossWave()
     {
-        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
-        {
-            Destroy(enemy);
-        }
-
         if (bossSpawned) return;
 
         bossSpawned = true;
@@ -119,4 +121,14 @@ public class EnemySpawner : MonoBehaviour
 
         aliveEnemies = 1;
     }
+
+    void SpawnMiniBoss()
+    {
+        if (miniBossSpawned) return;
+
+        miniBossSpawned = true;
+
+        GameObject miniBoss = Instantiate(miniBossPrefab, Vector2.zero, Quaternion.identity);
+    }
 }
+

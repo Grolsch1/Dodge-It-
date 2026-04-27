@@ -11,4 +11,6 @@ public static class GameEvents
     public static Func<bool> CanPauseCheck;
     public static Action OnGameReset;
     public static System.Action<int> OnWaveUpdated;
+    public static System.Action<Sprite> OnShowCutscene;
+    public static System.Action OnHideCutscene;
 }

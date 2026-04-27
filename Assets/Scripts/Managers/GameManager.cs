@@ -9,7 +9,9 @@ public class GameManager : MonoBehaviour
     private bool isPaused = false;
 
     private int enemiesKilled = 0;
-
+    [SerializeField] public Sprite startCutsceneSprite;
+    [SerializeField] public Sprite midCutsceneSprite;
+    [SerializeField] public Sprite endCutsceneSprite;
     private void Awake()
     {
         instance = this;
@@ -40,6 +42,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
 
         GameEvents.OnGameStart?.Invoke();
+        GameEvents.OnShowCutscene?.Invoke(startCutsceneSprite);
         AudioManager.instance.PlayMusic("Music");
     }
 
@@ -81,6 +84,7 @@ public class GameManager : MonoBehaviour
     private void Victory()
     {
         Time.timeScale = 0f;
+        GameEvents.OnShowCutscene?.Invoke(endCutsceneSprite);
         GameEvents.OnVictory?.Invoke(enemiesKilled);
     }
 
@@ -92,5 +96,11 @@ public class GameManager : MonoBehaviour
     public void OnBossKilled()
     {
         Victory();
+    }
+
+    public void OnMiniBossKilled()
+    {
+        Time.timeScale = 0f;
+        GameEvents.OnShowCutscene?.Invoke(midCutsceneSprite);
     }
 }
