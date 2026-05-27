@@ -62,9 +62,21 @@ public class AudioManager : MonoBehaviour
     {
         if (soundDictionary.TryGetValue(name, out Sound s))
         {
+            // Prevent replaying same track
+            if (musicSource.clip == s.clip && musicSource.isPlaying)
+                return;
+
+            musicSource.Stop();
+
+            // Reset source completely
+            musicSource.clip = null;
+            musicSource.pitch = 1f;
+
             musicSource.clip = s.clip;
             musicSource.volume = s.volume;
+            musicSource.pitch = s.pitch;
             musicSource.loop = true;
+
             musicSource.Play();
         }
     }

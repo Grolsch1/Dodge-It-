@@ -25,7 +25,9 @@ public class GameManager : MonoBehaviour
         enemiesKilled = 0;
 
         GameEvents.OnKillUpdated?.Invoke(enemiesKilled);
-        GameEvents.OnGameReset?.Invoke(); // tells UI to show start menu
+        GameEvents.OnGameReset?.Invoke();
+
+        AudioManager.instance.PlayMusic("TitleMusic");
     }
 
     private void Update()
@@ -43,7 +45,7 @@ public class GameManager : MonoBehaviour
 
         GameEvents.OnGameStart?.Invoke();
         GameEvents.OnShowCutscene?.Invoke(startCutsceneSprite);
-        AudioManager.instance.PlayMusic("Music");
+        AudioManager.instance.PlayMusic("GameMusic");
     }
 
     public void TogglePause()
@@ -55,17 +57,28 @@ public class GameManager : MonoBehaviour
 
         Time.timeScale = isPaused ? 0f : 1f;
         GameEvents.OnPause?.Invoke(isPaused);
+
+        if (isPaused)
+        {
+            AudioManager.instance.PlayMusic("PauseMusic");
+        }
+        else
+        {
+            AudioManager.instance.PlayMusic("GameMusic");
+        }
     }
 
     public void PlayerDied()
     {
         Time.timeScale = 0f;
+        AudioManager.instance.PlayMusic("DeathMusic");
         GameEvents.OnPlayerDeath?.Invoke();
     }
 
     public void RestartGame()
     {
         Time.timeScale = 1f;
+        AudioManager.instance.PlayMusic("TitleMusic");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
