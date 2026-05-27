@@ -49,7 +49,17 @@ public class PlayerHealth : MonoBehaviour
     public void IncreaseMaxHealth(int amount)
     {
         maxHealth += amount;
-        currentHealth += amount;
+        currentHealth += amount; // optional if healing on upgrade
+
+        UIRefresh();
+    }
+
+    private void UIRefresh()
+    {
+        PlayerHUD hud = FindObjectOfType<PlayerHUD>();
+
+        if (hud != null)
+            hud.UpdateHealth(currentHealth, maxHealth);
     }
 
     public void Heal(int amount)

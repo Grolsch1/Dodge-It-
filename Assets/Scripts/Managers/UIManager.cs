@@ -14,7 +14,6 @@ public class UIManager : MonoBehaviour
     public GameObject victoryScreen;
 
     [Header("Text")]
-    [SerializeField] private TextMeshProUGUI victoryText;
     [SerializeField] private TextMeshProUGUI killCounterText;
     [SerializeField] private TextMeshProUGUI waveText;
 
@@ -99,7 +98,6 @@ public class UIManager : MonoBehaviour
     void HandleVictory(int enemiesKilled)
     {
         victoryScreen.SetActive(true);
-        victoryText.text = $"Victory!\nEnemies Defeated: {enemiesKilled}";
     }
 
     void UpdateKillUI(int kills)

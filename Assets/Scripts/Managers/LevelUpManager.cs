@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -12,7 +11,6 @@ public class LevelUpManager : MonoBehaviour
     [Header("UI")]
     public GameObject levelUpPanel;
     public Button[] upgradeButtons;
-    public TextMeshProUGUI[] buttonTexts;
 
     [Header("Upgrades")]
     public List<UpgradeOption> allUpgrades;
@@ -53,7 +51,7 @@ public class LevelUpManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         levelUpPanel.SetActive(true);
 
-        GenerateRandomUpgrades();
+        GenerateUpgradeOptions();
 
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
@@ -72,26 +70,21 @@ public class LevelUpManager : MonoBehaviour
         canvasGroup.blocksRaycasts = true;
     }
 
-    void GenerateRandomUpgrades()
+    void GenerateUpgradeOptions()
     {
         currentChoices.Clear();
 
-        List<UpgradeOption> tempList = new List<UpgradeOption>(allUpgrades);
-
+        // Add the upgrades in a fixed order
         for (int i = 0; i < 3; i++)
         {
-            int index = Random.Range(0, tempList.Count);
-            currentChoices.Add(tempList[index]);
-            tempList.RemoveAt(index); // prevents duplicates
+            currentChoices.Add(allUpgrades[i]);
+
         }
 
+        // Set button listeners
         for (int i = 0; i < upgradeButtons.Length; i++)
         {
             int choiceIndex = i;
-
-            buttonTexts[i].text = currentChoices[i].displayName;
-            buttonTexts[i].fontSize = 40f;
-            buttonTexts[i].fontStyle = FontStyles.Bold;
 
             upgradeButtons[i].onClick.RemoveAllListeners();
             upgradeButtons[i].onClick.AddListener(() => ChooseUpgrade(choiceIndex));

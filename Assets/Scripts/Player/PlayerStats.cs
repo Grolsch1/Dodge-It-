@@ -33,5 +33,6 @@ public class PlayerStats : MonoBehaviour
     public void IncreaseHealth(int amount)
     {
         health.IncreaseMaxHealth(amount);
+        playerHUD.UpdateStats(this);
     }
 }
