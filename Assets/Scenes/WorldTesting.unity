@@ -2461,7 +2461,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: GameMusic
     clip: {fileID: 8300000, guid: db4242c5dacd2f24ea6cb29948e34c4a, type: 3}
-    volume: 0.5
+    volume: 0.6
     pitch: 1
     loop: 1
     source: {fileID: 0}
@@ -2491,19 +2491,19 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: PauseMusic
     clip: {fileID: 8300000, guid: 59e3e75302042e748a8aab6182a153ba, type: 3}
-    volume: 0.5
+    volume: 0.2
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: TitleMusic
     clip: {fileID: 8300000, guid: b809adf2e11f3c44792ac6a130d0fdc9, type: 3}
-    volume: 0.5
+    volume: 0.2
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: DeathMusic
     clip: {fileID: 8300000, guid: faa0b104d1fa1f74887735697b906a38, type: 3}
-    volume: 0.5
+    volume: 0.2
     pitch: 1
     loop: 1
     source: {fileID: 0}
