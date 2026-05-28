@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 31108252e26ddad429e1222488aa7685
+guid: 38dabfcd2bde5a84d905dcd914cc4a9a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2890409509781067523
-    second: Upgrades_0
+      213: -6023802233608850897
+    second: New-Upgrades_0
   - first:
-      213: -1224917531191432863
-    second: Upgrades_1
+      213: -5054324531626686156
+    second: New-Upgrades_1
   - first:
-      213: 4240796555968452825
-    second: Upgrades_2
+      213: 7118084249514311827
+    second: New-Upgrades_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -106,13 +106,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Upgrades_0
+      name: New-Upgrades_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 79
-        width: 98
-        height: 162
+        x: 47
+        y: 239
+        width: 290
+        height: 482
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,20 +121,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 30759e5922ccc1820800000000000000
-      internalID: 2890409509781067523
+      spriteID: f223a84b8c7276ca0800000000000000
+      internalID: -6023802233608850897
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Upgrades_1
+      name: New-Upgrades_1
       rect:
         serializedVersion: 2
-        x: 127
-        y: 78
-        width: 98
-        height: 162
+        x: 383
+        y: 236
+        width: 290
+        height: 482
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,20 +143,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 169af2acef7300fe0800000000000000
-      internalID: -1224917531191432863
+      spriteID: 43949d01e9e6bd9b0800000000000000
+      internalID: -5054324531626686156
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Upgrades_2
+      name: New-Upgrades_2
       rect:
         serializedVersion: 2
-        x: 239
-        y: 79
-        width: 98
-        height: 162
+        x: 719
+        y: 239
+        width: 290
+        height: 482
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,8 +165,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9d8133bbff55ada30800000000000000
-      internalID: 4240796555968452825
+      spriteID: 3908a9569e388c260800000000000000
+      internalID: 7118084249514311827
       vertices: []
       indices: 
       edges: []
@@ -185,9 +185,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Upgrades_0: 2890409509781067523
-      Upgrades_1: -1224917531191432863
-      Upgrades_2: 4240796555968452825
+      New-Upgrades_0: -6023802233608850897
+      New-Upgrades_1: -5054324531626686156
+      New-Upgrades_2: 7118084249514311827
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

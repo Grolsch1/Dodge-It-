@@ -34,11 +34,11 @@ public class PlayerHUD : MonoBehaviour
     public void UpdateXP(int currentXP, int requiredXP, int level)
     {
         targetXP = (float)currentXP / requiredXP;
-        levelText.text = "LVL " + level;
+        levelText.text = "Level " + level;
     }
     public void UpdateStats(PlayerStats stats)
     {
-        damageText.text = "DAMAGE: " + stats.damage;
-        speedText.text = "SPEED: " + stats.moveSpeed;
+        damageText.text = "" + stats.damage;
+        speedText.text = "" + stats.moveSpeed;
     }
 }
